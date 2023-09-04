@@ -1,0 +1,28 @@
+header>h1 {
+    display: flex;
+    background-color: cornflowerblue;
+    justify-content: center;
+    color: #3c56a5;
+    font-weight: 800;
+}
+
+header>nav {
+    background-color: #d4d1d1;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header>nav>a {
+    display: block;
+    color: #3c56a5;
+    font-weight: bold;
+    padding:  16px;
+    text-decoration: none;
+}
+
+header>nav>a:hover {
+    background-color: darkgray;
+    color: white;
+}
