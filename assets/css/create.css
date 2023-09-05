@@ -1,0 +1,17 @@
+form {
+    background-color: whitesmoke;
+    padding: 20px;
+    min-width: 40vw;
+}
+
+input{
+    display: block;
+    margin: 5px;
+    height: 25px;
+}
+
+label {
+    display: flow-root;
+    text-align: left;
+    font-weight: bold;
+}

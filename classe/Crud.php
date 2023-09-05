@@ -34,9 +34,9 @@ class Crud extends PDO{
      * @param  int    $value
      * @param  string $field
      * @param  string $url
-     * @return object
+     * @return array
      */
-    public function selectId($table, $value, $field='id', $url) {
+    public function selectId($table, $value, $field='id', $url="index") {
 
         $sql = "SELECT * FROM $table WHERE $field = :$field";
         $stmt = $this->prepare($sql);
@@ -49,7 +49,7 @@ class Crud extends PDO{
         if($count == 1){
             return $stmt->fetch();
         }else{
-            header("location:$url.php");
+            header("location:$table-$url.php");
             exit;
         }   
     }
@@ -89,7 +89,7 @@ class Crud extends PDO{
      * @param  array  $data
      * @param  string $field
      */
-    public function update($table, $data, $field = 'id') {
+    public function update($table, $data, $field='id', $url="index") {
 
         $fieldName = null;
 
@@ -107,7 +107,8 @@ class Crud extends PDO{
         }
 
         if($stmt->execute()){
-            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            header("location:$table-$url.php");
+            exit;
         }else{
             print_r($stmt->errorInfo());
         }
@@ -122,14 +123,15 @@ class Crud extends PDO{
      * @param  string $url
      * @param  string $field
      */
-    public function delete($table, $value, $url, $field='id'){
+    public function delete($table, $value, $field='id', $url="index"){
 
         $sql = "DELETE FROM $table WHERE $field = :$field";
         $stmt = $this->prepare($sql);
         $stmt->bindValue(":$field", $value);
 
         if($stmt->execute()){
-            header("location:$url.php");
+            header("location:$table-$url.php");
+            exit;
         }else{
             print_r($stmt->errorInfo());
         }   

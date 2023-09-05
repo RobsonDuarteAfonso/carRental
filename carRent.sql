@@ -2,13 +2,13 @@
 -- Schema carRent
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `carRent` DEFAULT CHARACTER SET utf8mb4 ;
-USE `carRent` ;
+USE `carRent`;
 
 -- -----------------------------------------------------
 -- Table `carRent`.`User`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carRent`.`User` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `address` VARCHAR(45) NULL,
@@ -23,7 +23,7 @@ ENGINE = InnoDB;
 -- Table `carRent`.`Category`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carRent`.`Category` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(1) NOT NULL,
   `type` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
@@ -34,7 +34,7 @@ ENGINE = InnoDB;
 -- Table `carRent`.`Car`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carRent`.`Car` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `model` VARCHAR(45) NOT NULL,
   `brand` VARCHAR(45) NOT NULL,
   `Year` INT NOT NULL,
@@ -55,7 +55,7 @@ ENGINE = InnoDB;
 -- Table `carRent`.`Rent`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carRent`.`Rent` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `User_id` INT NOT NULL,
   `Car_id` INT NOT NULL,
   `start_rent` DATETIME NOT NULL,
