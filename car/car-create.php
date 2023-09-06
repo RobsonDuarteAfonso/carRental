@@ -1,31 +1,48 @@
 <?php
     include("../header.php");
+
+    require_once('../classe/Crud.php');
+    
+    $crud = new Crud;
+    $select = $crud->select('category', 'name');
 ?>
 <main>
 
     <section>
 
-        <h1>Créer un Client</h1>
+        <h1>Créer une Voiture</h1>
         
-        <form action="user-store.php" method="post">
+        <form action="car-store.php" method="post">
 
-            <label>Nom
-                <input type="text" name="name">
+            <label>Modèle
+                <input type="text" name="model">
             </label>
-            <label>Adresse
-                <input type="text" name="address">
+            <label>Marque
+                <input type="text" name="brand">
             </label>        
-            <label>Courriel
-                <input type="email" name="email">
+            <label>Année
+                <input type="text" name="year">
             </label>
-            <label>Permit
-                <input type="text" name="driver_license">
+            <label>Plaque
+                <input type="text" name="license_plate">
             </label>
-            <label>Expiration
-                <input type="date" name="expiration_date">
+            <label>Kilométrage
+                <input type="text" name="car_mileage">
+            </label>
+            <label>Catégorie
+                <select name="category_id">
+                    <option value="0">Sélectionner</option>
+                    
+                    <?php foreach($select as $row) : ?>
+                        <option value="<?=$row['id']?>"><?=$row['name'] ." [". $row['type'] ."]"?></option>
+                    <?php endforeach ?>
+                </select>
             </label>
 
-            <input type="submit" class="button_save" value="Sauver">
+            <div class="buttons">
+                <input type="submit" class="button_save" value="Sauver">
+                <input type="button" class="button_cancel" value="Annuler" onclick="goBack()">
+            </div>
             
         </form>
 

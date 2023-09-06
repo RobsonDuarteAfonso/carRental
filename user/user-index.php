@@ -35,11 +35,11 @@
                         foreach($select as $row) : 
                 ?>                
                 <tr>
-                    <td><?= $row['name']; ?></td>
-                    <td><?= $row['email']; ?></td>
-                    <td><?= $row['address']; ?></td>
-                    <td><?= $row['driver_license']; ?></td>
-                    <td><?= $row['expiration_date']; ?></td>
+                    <td><?= $row['name'] ?></td>
+                    <td><?= $row['email'] ?></td>
+                    <td><?= $row['address'] ?></td>
+                    <td><?= $row['driver_license'] ?></td>
+                    <td><?= $row['expiration_date'] ?></td>
                     <td>
                         <a href="user-edit.php?id=<?= $row['id']?>" class="button_edit">
                             <span class="material-icons">create</span>

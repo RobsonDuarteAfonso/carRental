@@ -25,7 +25,10 @@
                 <input type="date" name="expiration_date">
             </label>
 
-            <input type="submit" class="button_save" value="Sauver">
+            <div class="buttons">
+                <input type="submit" class="button_save" value="Sauver">
+                <input type="button" class="button_cancel" value="Annuler" onclick="goBack()">
+            </div>
             
         </form>
 

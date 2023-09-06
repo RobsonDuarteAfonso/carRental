@@ -2,7 +2,7 @@
     include("../header.php");
 
     if(!isset($_GET['id']) || $_GET['id']==null){
-        header('location:user-index.php');
+        header('location:car-index.php');
         exit;
        }
     
@@ -11,7 +11,9 @@
       require_once('../classe/Crud.php');
     
       $crud = new Crud;
-      $selectId = $crud->selectId('user', $id);
+      $selectId = $crud->selectId('car', $id);
+
+      $select = $crud->select('category', 'name');
     
       extract($selectId);    
 ?>
@@ -21,26 +23,40 @@
 
         <h1>Supprimer un Client</h1>
         
-        <form action="user-delete.php" method="post">
+        <form action="car-delete.php" method="post">
 
             <input type="hidden" name="id" value="<?=$id?>">
-            <label>Nom
-                <input type="text" name="name" value="<?=$name?>" disabled>
+            <label>Modèle
+                <input type="text" name="model" value="<?=$model?>" disabled>
             </label>
-            <label>Adresse
-                <input type="text" name="address" value="<?=$address?>" disabled>
+            <label>Marque
+                <input type="text" name="brand" value="<?=$brand?>" disabled>
             </label>        
-            <label>Courriel
-                <input type="email" name="email" value="<?=$email?>" disabled>
+            <label>Année
+                <input type="text" name="year" value="<?=$year?>" disabled>
             </label>
-            <label>Permit
-                <input type="text" name="driver_license" value="<?=$driver_license?>" disabled>
+            <label>Plaque
+                <input type="text" name="license_plate" value="<?=$license_plate?>" disabled>
             </label>
-            <label>Expiration
-                <input type="date" name="expiration_date" value="<?=$expiration_date?>" disabled>
+            <label>Kilométrage
+                <input type="text" name="car_mileage" value="<?=$car_mileage?>" disabled>
             </label>
+            <label>Catégorie
+                <select name="category_id" disabled>
+                    <option value="0">Sélectionner</option>
+                    
+                    <?php foreach($select as $row) : ?>
+                        <option value="<?=$row['id']?>" <?php if ($row['id'] == $category_id) echo "Selected" ?>>
+                            <?=$row['name'] ." [". $row['type'] ."]"?>
+                        </option>
+                    <?php endforeach ?>
+                </select>
+            </label>             
 
-            <input type="submit" class="button_delete" value="Supprimer">
+            <div class="buttons">
+                <input type="submit" class="button_delete" value="Supprimer">
+                <input type="button" class="button_cancel" value="Annuler" onclick="goBack()">
+            </div>
 
         </form>
 

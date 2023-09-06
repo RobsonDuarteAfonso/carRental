@@ -1,46 +1,58 @@
 <?php
     include("../header.php");
 
-    if(!isset($_GET['id']) || $_GET['id']==null){
-        header('location:user-index.php');
+    if((!isset($_GET['user_id']) || $_GET['user_id']==null) && (!isset($_GET['car_id']) || $_GET['car_id']==null)){
+        header('location:rent-index.php');
         exit;
        }
     
-      $id =  $_GET['id'];
+      $userId =  $_GET['user_id'];
+      $carId =  $_GET['car_id'];
     
       require_once('../classe/Crud.php');
     
       $crud = new Crud;
-      $selectId = $crud->selectId('user', $id);
-    
-      extract($selectId);    
+      $selectId = $crud->selectDoublePK('rent', $userId, $carId, 'user_id', 'car_id');
+      $selectUser = $crud->selectId('user', $userId);
+      $selectCar = $crud->selectId('car', $carId);
+
+      extract($selectId);
+      extract($selectUser);
+      extract($selectCar);   
 ?>
 <main>
 
     <section>
 
-        <h1>Supprimer un Client</h1>
+        <h1>Supprimer une Location</h1>
         
-        <form action="user-delete.php" method="post">
+        <form action="rent-delete.php" method="post">
 
-            <input type="hidden" name="id" value="<?=$id?>">
-            <label>Nom
+            <input type="hidden" name="user_id" value="<?=$user_id?>">
+            <input type="hidden" name="car_id" value="<?=$car_id?>">
+
+            <label>Client
                 <input type="text" name="name" value="<?=$name?>" disabled>
             </label>
-            <label>Adresse
-                <input type="text" name="address" value="<?=$address?>" disabled>
-            </label>        
-            <label>Courriel
-                <input type="email" name="email" value="<?=$email?>" disabled>
+            <label>Voiture
+                <input type="text" name="model" value="<?=$model." - ".$brand." - ".$license_plate?>" disabled>
+            </label>                    
+            <label>Debut
+                <input type="date" name="start_date_rent" value="<?=$start_date_rent?>" disabled>
+                <input type="time" name="start_time_rent" value="<?=$start_time_rent?>" disabled>
             </label>
-            <label>Permit
-                <input type="text" name="driver_license" value="<?=$driver_license?>" disabled>
-            </label>
-            <label>Expiration
-                <input type="date" name="expiration_date" value="<?=$expiration_date?>" disabled>
+            <label>Fin
+                <input type="date" name="end_date_rent" value="<?=$end_date_rent?>" disabled>
+                <input type="time" name="end_time_rent" value="<?=$end_time_rent?>" disabled>
+            </label>             
+            <label>Prix par Jour
+                <input type="text" name="price_per_day" value="<?=$price_per_day?>" disabled>
             </label>
 
-            <input type="submit" class="button_delete" value="Supprimer">
+            <div class="buttons">
+                <input type="submit" class="button_delete" value="Supprimer">
+                <input type="button" class="button_cancel" value="Annuler" onclick="goBack()">
+            </div>
 
         </form>
 

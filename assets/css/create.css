@@ -4,10 +4,10 @@ form {
     min-width: 40vw;
 }
 
-input{
+input, select {
     display: block;
-    margin: 5px;
-    height: 25px;
+    margin: 5px 5px 5px 0;
+    height: 30px;
 }
 
 label {

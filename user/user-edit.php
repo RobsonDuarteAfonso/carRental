@@ -40,7 +40,10 @@
                 <input type="date" name="expiration_date" value="<?=$expiration_date?>">
             </label>
 
-            <input type="submit" class="button_save" value="Sauver">
+            <div class="buttons">
+                <input type="submit" class="button_modifier" value="Modifier">
+                <input type="button" class="button_cancel" value="Annuler" onclick="goBack()">
+            </div>            
 
         </form>
 

@@ -10,6 +10,7 @@
     <title>Car Rent</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="<?=APP?>assets/css/styles.css">
+    <script src="<?=APP?>assets/js/main.js" defer></script>
 </head>
 <body>
     <header>
@@ -19,7 +20,7 @@
             <a href="<?=APP?>user/user-index.php">Client</a>
             <a href="<?=APP?>car/car-index.php">Voiture</a>
             <a href="<?=APP?>category/category-index.php">Catégorie</a>
-            <a href="<?=APP?>rent/rent-index.php">Louer</a>
+            <a href="<?=APP?>rent/rent-index.php">Location</a>
         </nav>
     </header>
 

@@ -1,31 +1,54 @@
 <?php
     include("../header.php");
+
+    require_once('../classe/Crud.php');
+    
+    $crud = new Crud;
+    $selectUsers = $crud->select('user', 'name');
+    $selectCars = $crud->select('car', 'model');
 ?>
 <main>
 
     <section>
 
-        <h1>Créer un Client</h1>
+        <h1>Créer une Location</h1>
         
-        <form action="user-store.php" method="post">
+        <form action="rent-store.php" method="post">
 
-            <label>Nom
-                <input type="text" name="name">
+            <label>Client
+                <select name="user_id">
+                    <option value="0">Sélectionner</option>
+                    
+                    <?php foreach($selectUsers as $rowUser) : ?>
+                        <option value="<?=$rowUser['id']?>"><?=$rowUser['name']?></option>
+                    <?php endforeach ?>
+                </select>
             </label>
-            <label>Adresse
-                <input type="text" name="address">
-            </label>        
-            <label>Courriel
-                <input type="email" name="email">
+            <label>Voiture
+                <select name="car_id">
+                    <option value="0">Sélectionner</option>
+                    
+                    <?php foreach($selectCars as $rowCar) : ?>
+                        <option value="<?=$rowCar['id']?>"><?=$rowCar['model'] ." - ". $rowCar['brand'] ?></option>
+                    <?php endforeach ?>
+                </select>
+            </label>                    
+            <label>Debut
+                <input type="date" name="start_date_rent">
+                <input type="time" name="start_time_rent">
             </label>
-            <label>Permit
-                <input type="text" name="driver_license">
-            </label>
-            <label>Expiration
-                <input type="date" name="expiration_date">
+            <label>Fin
+                <input type="date" name="end_date_rent">
+                <input type="time" name="end_time_rent">
+            </label>             
+            <label>Prix par Jour
+                <input type="text" name="price_per_day">
             </label>
 
-            <input type="submit" class="button_save" value="Sauver">
+            <div class="buttons">
+                <input type="submit" class="button_save" value="Sauver">
+                <input type="button" class="button_cancel" value="Annuler" onclick="goBack()">
+            </div>
             
         </form>
 

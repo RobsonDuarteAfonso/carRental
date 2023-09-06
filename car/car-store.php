@@ -3,8 +3,8 @@
 require_once('../classe/Crud.php');
 
 $crud = new Crud;
-$crud->insert('user', $_POST);
+$crud->insert('car', $_POST);
 
-header("location:user-index.php");
+header("location:car-index.php");
 
 ?>

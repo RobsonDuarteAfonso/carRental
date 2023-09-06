@@ -2,7 +2,7 @@
     include("../header.php");
 
     if(!isset($_GET['id']) || $_GET['id']==null){
-        header('location:user-index.php');
+        header('location:car-index.php');
         exit;
        }
     
@@ -11,7 +11,9 @@
       require_once('../classe/Crud.php');
     
       $crud = new Crud;
-      $selectId = $crud->selectId('user', $id);
+      $selectId = $crud->selectId('car', $id);
+
+      $select = $crud->select('category', 'name');
     
       extract($selectId);    
 ?>
@@ -19,28 +21,42 @@
 
     <section>
 
-        <h1>Modifier un Client</h1>
+        <h1>Modifier une Voiture</h1>
         
-        <form action="user-update.php" method="post">
+        <form action="car-update.php" method="post">
 
             <input type="hidden" name="id" value="<?=$id?>">
-            <label>Nom
-                <input type="text" name="name" value="<?=$name?>">
+            <label>Modèle
+                <input type="text" name="model" value="<?=$model?>">
             </label>
-            <label>Adresse
-                <input type="text" name="address" value="<?=$address?>">
+            <label>Marque
+                <input type="text" name="brand" value="<?=$brand?>">
             </label>        
-            <label>Courriel
-                <input type="email" name="email" value="<?=$email?>">
+            <label>Année
+                <input type="text" name="year" value="<?=$year?>">
             </label>
-            <label>Permit
-                <input type="text" name="driver_license" value="<?=$driver_license?>">
+            <label>Plaque
+                <input type="text" name="license_plate" value="<?=$license_plate?>">
             </label>
-            <label>Expiration
-                <input type="date" name="expiration_date" value="<?=$expiration_date?>">
+            <label>Kilométrage
+                <input type="text" name="car_mileage" value="<?=$car_mileage?>">
             </label>
+            <label>Catégorie
+                <select name="category_id">
+                    <option value="0">Sélectionner</option>
+                    
+                    <?php foreach($select as $row) : ?>
+                        <option value="<?=$row['id']?>" <?php if ($row['id'] == $category_id) echo "Selected" ?>>
+                            <?=$row['name'] ." [". $row['type'] ."]"?>
+                        </option>
+                    <?php endforeach ?>
+                </select>
+            </label>            
 
-            <input type="submit" class="button_save" value="Sauver">
+            <div class="buttons">
+                <input type="submit" class="button_modifier" value="Modifier">
+                <input type="button" class="button_cancel" value="Annuler" onclick="goBack()">
+            </div> 
 
         </form>
 

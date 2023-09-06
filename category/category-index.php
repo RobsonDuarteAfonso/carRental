@@ -4,25 +4,22 @@
     require_once('../classe/Crud.php');
     
     $crud = new Crud;
-    $select = $crud->select('user');
+    $select = $crud->select('category');
         
 ?>
 <main>
 
     <section>
 
-        <h1>Liste de Client</h1>
+        <h1>Liste de Catégorie</h1>
         
         <table>
             <thead>
                 <tr>
                     <th>Nom</th>
-                    <th>Courriel</th>
-                    <th>Adresse</th>
-                    <th>Permis</th>
-                    <th>Expiration</th>
+                    <th>Type</th>
                     <th colspan="2">
-                        <a href="user-create.php" class="button_add">
+                        <a href="category-create.php" class="button_add">
                             <span class="material-icons">add</span>
                         </a>
                     </th>
@@ -36,17 +33,14 @@
                 ?>                
                 <tr>
                     <td><?= $row['name']; ?></td>
-                    <td><?= $row['email']; ?></td>
-                    <td><?= $row['address']; ?></td>
-                    <td><?= $row['driver_license']; ?></td>
-                    <td><?= $row['expiration_date']; ?></td>
+                    <td><?= $row['type']; ?></td>
                     <td>
-                        <a href="user-edit.php?id=<?= $row['id']?>" class="button_edit">
+                        <a href="category-edit.php?id=<?= $row['id']?>" class="button_edit">
                             <span class="material-icons">create</span>
                         </a>
                     </td>
                     <td>
-                        <a href="user-confirm.php?id=<?= $row['id']?>" class="button_remove">
+                        <a href="category-confirm.php?id=<?= $row['id']?>" class="button_remove">
                             <span class="material-icons">delete</span>
                         </a>
                     </td> 

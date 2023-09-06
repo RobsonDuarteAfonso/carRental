@@ -2,7 +2,7 @@
     --padding-button: 5px 20px 5px 20px;
 }
 
-/* Bouton Default */
+/* link Default */
 a {    
     display: inline-flex;
     align-items: center;
@@ -50,32 +50,58 @@ a {
     background-color: rgb(253, 74, 74);
 }
 
-/* Bouton Sauver */
+/* Groupe de boutons */
 
-.button_save {    
+.buttons {
+    margin-top: 20px;
+    display: inline-flex;
+}
 
-    padding: var(--padding-button);
-    background-color: rgb(4, 172, 21);
+/* Bouton Default */
+
+input[type="submit"], input[type="button"] {
+    padding: var(--padding-button);    
     color: white;
     border: none;
     cursor: pointer;
+}
+
+/* Bouton Sauver */
+
+.button_save {      
+    background-color: rgb(4, 172, 21);
 }
 
 .button_save:hover {
     background-color: rgb(9, 217, 30);
 }
 
-/* Bouton Sauver */
+/* Bouton Modifier */
+
+.button_modifier {      
+    background-color: rgb(255, 179, 0);
+}
+
+.button_modifier:hover {
+    background-color: rgb(247, 199, 86);
+}
+
+/* Bouton Supprimer */
 
 .button_delete {    
-
-    padding: var(--padding-button);
     background-color: rgb(255, 0, 0);
-    color: white;
-    border: none;
-    cursor: pointer;
 }
 
 .button_delete:hover {
     background-color: rgb(253, 74, 74);
+}
+
+/* Bouton Annuler */
+
+.button_cancel {    
+    background-color: rgb(147, 146, 146);
+}
+
+.button_cancel:hover {
+    background-color: rgb(192, 192, 192);
 }

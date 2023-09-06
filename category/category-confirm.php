@@ -2,7 +2,7 @@
     include("../header.php");
 
     if(!isset($_GET['id']) || $_GET['id']==null){
-        header('location:user-index.php');
+        header('location:category-index.php');
         exit;
        }
     
@@ -11,7 +11,7 @@
       require_once('../classe/Crud.php');
     
       $crud = new Crud;
-      $selectId = $crud->selectId('user', $id);
+      $selectId = $crud->selectId('category', $id);
     
       extract($selectId);    
 ?>
@@ -19,28 +19,22 @@
 
     <section>
 
-        <h1>Supprimer un Client</h1>
+        <h1>Supprimer une Catégorie</h1>
         
-        <form action="user-delete.php" method="post">
+        <form action="category-delete.php" method="post">
 
             <input type="hidden" name="id" value="<?=$id?>">
             <label>Nom
                 <input type="text" name="name" value="<?=$name?>" disabled>
             </label>
-            <label>Adresse
-                <input type="text" name="address" value="<?=$address?>" disabled>
+            <label>Type
+                <input type="text" name="type" value="<?=$type?>" disabled>
             </label>        
-            <label>Courriel
-                <input type="email" name="email" value="<?=$email?>" disabled>
-            </label>
-            <label>Permit
-                <input type="text" name="driver_license" value="<?=$driver_license?>" disabled>
-            </label>
-            <label>Expiration
-                <input type="date" name="expiration_date" value="<?=$expiration_date?>" disabled>
-            </label>
 
-            <input type="submit" class="button_delete" value="Supprimer">
+            <div class="buttons">
+                <input type="submit" class="button_delete" value="Supprimer">
+                <input type="button" class="button_cancel" value="Annuler" onclick="goBack()">
+            </div>
 
         </form>
 
