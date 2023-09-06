@@ -1,5 +1,5 @@
 <?php 
-    define("APP", "/carrent/");
+    define("APP", "/carrental/");
 ?>
 
 <!DOCTYPE html>

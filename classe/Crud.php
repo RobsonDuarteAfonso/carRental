@@ -7,7 +7,7 @@
 class Crud extends PDO{
 
     public function __construct(){
-        parent::__construct('mysql:host=localhost; dbname=carrent; port=3306; charset=utf8', 'root', '');
+        parent::__construct('mysql:host=localhost; dbname=carrental; port=3306; charset=utf8', 'root', '');
     }
 
     

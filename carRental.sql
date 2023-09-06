@@ -1,14 +1,14 @@
 
 -- -----------------------------------------------------
--- Schema carrent
+-- Schema carrental
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `carrent` DEFAULT CHARACTER SET utf8mb4 ;
-USE `carrent` ;
+CREATE SCHEMA IF NOT EXISTS `carrental` DEFAULT CHARACTER SET utf8mb4 ;
+USE `carrental` ;
 
 -- -----------------------------------------------------
--- Table `carrent`.`user`
+-- Table `carrental`.`user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `carrent`.`user` (
+CREATE TABLE IF NOT EXISTS `carrental`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
@@ -21,9 +21,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `carrent`.`category`
+-- Table `carrental`.`category`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `carrent`.`category` (
+CREATE TABLE IF NOT EXISTS `carrental`.`category` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(1) NOT NULL,
   `type` VARCHAR(45) NOT NULL,
@@ -32,9 +32,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `carrent`.`car`
+-- Table `carrental`.`car`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `carrent`.`car` (
+CREATE TABLE IF NOT EXISTS `carrental`.`car` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `model` VARCHAR(45) NOT NULL,
   `brand` VARCHAR(45) NOT NULL,
@@ -46,16 +46,16 @@ CREATE TABLE IF NOT EXISTS `carrent`.`car` (
   INDEX `fk_Car_Category1_idx` (`category_id` ASC),
   CONSTRAINT `fk_Car_Category1`
     FOREIGN KEY (`category_id`)
-    REFERENCES `carrent`.`category` (`id`)
+    REFERENCES `carrental`.`category` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `carrent`.`rent`
+-- Table `carrental`.`rent`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `carrent`.`rent` (
+CREATE TABLE IF NOT EXISTS `carrental`.`rent` (
   `user_id` INT NOT NULL,
   `car_id` INT NOT NULL,
   `start_date_rent` DATE NOT NULL,
@@ -68,12 +68,12 @@ CREATE TABLE IF NOT EXISTS `carrent`.`rent` (
   PRIMARY KEY (`user_id`, `car_id`),
   CONSTRAINT `fk_Rent_User`
     FOREIGN KEY (`user_id`)
-    REFERENCES `carrent`.`user` (`id`)
+    REFERENCES `carrental`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Rent_Car1`
     FOREIGN KEY (`car_id`)
-    REFERENCES `carrent`.`car` (`id`)
+    REFERENCES `carrental`.`car` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
