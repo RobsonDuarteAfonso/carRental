@@ -40,10 +40,11 @@ a {
 /* Bouton Supprimer */
 
 .button_remove {    
-
+    border: none;
     padding: var(--padding-button);
     background-color: rgb(255, 0, 0);
     color: white;
+    cursor: pointer;
 }
 
 .button_remove:hover {
