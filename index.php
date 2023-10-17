@@ -1,11 +1,12 @@
 <?php
-    define('PATH_DIR', 'http://localhost:8000/carrentalMVC/');
+    session_start();
+    define('PATH_DIR', 'http://localhost/carrentalMVC/');
 
     require_once(__DIR__.'/controller/Controller.php');
     require_once(__DIR__.'/library/RequirePage.php');
-    
     require_once(__DIR__.'/vendor/autoload.php');
     require_once(__DIR__.'/library/Twig.php');
+    require_once (__DIR__.'/library/CheckSession.php');
 
 
     $url = isset($_GET["url"]) ? explode ('/', ltrim($_GET["url"], '/')) : '/';

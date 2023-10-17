@@ -22,6 +22,15 @@
         public function store() {            
             
             $user = new User;
+
+            $options = [
+                'cost' => 10
+            ];
+
+            $hashPassword= password_hash($password, PASSWORD_BCRYPT, $options);
+               
+            $_POST['password'] = $hashPassword;
+
             $insert = $user->insert($_POST);         
 
             RequirePage::redirect('user');

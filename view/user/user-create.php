@@ -7,6 +7,15 @@
         
         <form action="{{ path }}user/store" method="post">
 
+            <label>
+                Privilege
+                <select name="privilege_id">
+                    <option value="0">Sélectionner</option> 
+                    {% for privilege in privileges %}
+                    <option value="{{privilege.id}}" {% if  privilege.id == data.privilege_id %} selected {% endif %}>{{ privilege.privilege}}</option>
+                    {% endfor%}
+                </select>
+            </label> 
             <label>Nom
                 <input type="text" name="name">
             </label>
@@ -15,6 +24,9 @@
             </label>        
             <label>Courriel
                 <input type="email" name="email">
+            </label>        
+            <label>Password
+                <input type="password" name="password">
             </label>
             <label>Permit
                 <input type="text" name="driver_license">

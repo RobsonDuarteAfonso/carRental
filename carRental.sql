@@ -1,9 +1,18 @@
-
 -- -----------------------------------------------------
 -- Schema carrental
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `carrental` DEFAULT CHARACTER SET utf8mb4 ;
+CREATE SCHEMA IF NOT EXISTS `carrental` DEFAULT CHARACTER SET utf8 ;
 USE `carrental` ;
+
+-- -----------------------------------------------------
+-- Table `carrental`.`privilege`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carrental`.`privilege` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `type` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 -- Table `carrental`.`user`
@@ -12,11 +21,19 @@ CREATE TABLE IF NOT EXISTS `carrental`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
   `address` VARCHAR(45) NULL,
-  `driver_license` VARCHAR(45) NOT NULL,
-  `expiration_date` DATE NOT NULL,
+  `driver_license` VARCHAR(45) NULL,
+  `expiration_date` DATE NULL,
+  `privilege_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC))
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC),
+  INDEX `fk_user_privilege1_idx` (`privilege_id` ASC),
+  CONSTRAINT `fk_user_privilege1`
+    FOREIGN KEY (`privilege_id`)
+    REFERENCES `carrental`.`privilege` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -78,3 +95,22 @@ CREATE TABLE IF NOT EXISTS `carrental`.`rent` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `carrental`.`Log`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carrental`.`Log` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `address_ip` VARCHAR(45) NOT NULL,
+  `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  `guest` INT NOT NULL DEFAULT 0,
+  `page_visited` VARCHAR(45) NOT NULL,
+  `user_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Log_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_Log_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `carrental`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;

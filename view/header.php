@@ -17,5 +17,8 @@
             <a href="{{ path }}car">Voiture</a>
             <a href="{{ path }}category">Catégorie</a>
             <a href="{{ path }}rent">Location</a>
+            <a href="{{ path }}log">Journal de bord</a>
+            <a href="{{ path }}login">Login</a>
+            <a href="{{ path }}login/logout">Logout</a>
         </nav>
     </header>
