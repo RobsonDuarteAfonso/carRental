@@ -78,6 +78,7 @@ abstract class Crud extends PDO {
         $fieldsValue = ":".implode(", :", array_keys($data));
 
         $sql = "INSERT INTO $this->table ($fieldsName) VALUES ($fieldsValue)";
+
         $stmt = $this->prepare($sql);
 
         foreach($data as $key=>$value) {

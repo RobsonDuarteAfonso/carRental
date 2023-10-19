@@ -7,6 +7,7 @@
     require_once(__DIR__.'/vendor/autoload.php');
     require_once(__DIR__.'/library/Twig.php');
     require_once (__DIR__.'/library/CheckSession.php');
+    require_once (__DIR__.'/library/RegisterAccess.php');
 
 
     $url = isset($_GET["url"]) ? explode ('/', ltrim($_GET["url"], '/')) : '/';
@@ -36,20 +37,24 @@
 
                     if (isset($url[3])) {
                         
+                        RegisterAccess::save($requestURL .'/'. $method .'/'. $url[2] .'/'. $url[3]);
                         echo $controller->$method($url[2], $url[3]);
 
                     } else {
-                        
+
+                        RegisterAccess::save($requestURL .'/'. $method .'/'. $url[2]);
                         echo $controller->$method($url[2]);
                     }
 
                 } else {
                     
+                    RegisterAccess::save($requestURL .'/'. $method);
                     echo $controller->$method();
                 }
 
             } else {
 
+                RegisterAccess::save($requestURL .'/index');
                 echo $controller->index();
             }
 
@@ -65,6 +70,7 @@
         $controllerHome = __DIR__.'/controller/ControllerHome.php';
         require_once($controllerHome);
         $controller = new ControllerHome;
+        RegisterAccess::save('home/index');
         return $controller;        
     }
 
