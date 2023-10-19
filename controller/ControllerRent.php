@@ -6,6 +6,11 @@
 
     class ControllerRent extends Controller {
 
+        public function __construct() {
+            
+            CheckSession::sessionAuth();
+        }        
+
         public function index() {
            
             $rent = new Rent;

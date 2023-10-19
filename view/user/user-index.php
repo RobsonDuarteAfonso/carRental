@@ -1,9 +1,9 @@
-{{ include('header.php', { title: 'Liste de Clients' }) }}
+{{ include('header.php', { title: 'Liste d'Utilisateurs' }) }}
 <main>
 
     <section>
 
-        <h1>Liste de Clients</h1>
+        <h1>Liste d'Utilisateurs</h1>
         
         <table>
             <thead>
@@ -13,6 +13,7 @@
                     <th>Adresse</th>
                     <th>Permis</th>
                     <th>Expiration</th>
+                    <th>Type</th>
                     <th colspan="2">
                         <a href="{{ path }}user/create" class="button_add">
                             <span class="material-icons">add</span>
@@ -30,6 +31,7 @@
                         <td>{{ user.address }}</td>
                         <td>{{ user.driver_license }}</td>
                         <td>{{ user.expiration_date }}</td>
+                        <td>{{ user.type }}</td>
                         <td>
                             <a href="{{ path }}user/edit/{{ user.id }}" class="button_edit">
                                 <span class="material-icons">create</span>

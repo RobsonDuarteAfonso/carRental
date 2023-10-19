@@ -8,7 +8,7 @@
         <form action="{{ path }}login/auth" method="post">
 
             <label>Utilisateur
-                <input type="email" name="username">
+                <input type="email" name="email">
             </label>
             <label>Mot de passe
                 <input type="password" name="password">

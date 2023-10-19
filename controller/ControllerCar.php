@@ -5,6 +5,11 @@
 
     class ControllerCar extends Controller {
 
+        public function __construct() {
+            
+            CheckSession::sessionAuth();
+        }
+
         public function index() {
            
             $car = new Car;

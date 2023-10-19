@@ -23,6 +23,9 @@
             <label>Expiration
                 <input type="date" name="expiration_date" value="{{ user.expiration_date }}" disabled>
             </label>
+            <label>Type
+                <input type="date" name="type" value="{{ privilege.type }}" disabled>
+            </label>            
 
             <div class="buttons">
                 <input type="submit" class="button_delete" value="Supprimer">

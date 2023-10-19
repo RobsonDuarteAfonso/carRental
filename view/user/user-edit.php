@@ -8,6 +8,19 @@
         <form action="{{ path }}user/update" method="post">
 
             <input type="hidden" name="id" value="{{ user.id }}">
+
+            {% if session.privilege == 1 %}
+                <label>
+                    Privilege
+                    <select name="privilege_id">
+                        <option value="0">Sélectionner</option> 
+                        {% for privilege in privileges %}
+                        <option value="{{privilege.id}}" {% if  privilege.id == data.privilege_id %} selected {% endif %}>{{ privilege.privilege}}</option>
+                        {% endfor%}
+                    </select>
+                </label>
+            {% endif %}
+                        
             <label>Nom
                 <input type="text" name="name" value="{{ user.name }}">
             </label>

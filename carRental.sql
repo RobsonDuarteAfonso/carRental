@@ -1,3 +1,4 @@
+
 -- -----------------------------------------------------
 -- Schema carrental
 -- -----------------------------------------------------
@@ -23,8 +24,8 @@ CREATE TABLE IF NOT EXISTS `carrental`.`user` (
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
   `address` VARCHAR(45) NULL,
-  `driver_license` VARCHAR(45) NULL,
-  `expiration_date` DATE NULL,
+  `driver_license` VARCHAR(45) NOT NULL,
+  `expiration_date` DATE NOT NULL,
   `privilege_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
@@ -97,20 +98,27 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `carrental`.`Log`
+-- Table `carrental`.`log`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `carrental`.`Log` (
+CREATE TABLE IF NOT EXISTS `carrental`.`log` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `address_ip` VARCHAR(45) NOT NULL,
   `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-  `guest` INT NOT NULL DEFAULT 0,
+  `guest` INT NOT NULL DEFAULT 1 COMMENT '0 = false\n1 = true',
   `page_visited` VARCHAR(45) NOT NULL,
   `user_id` INT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Log_user1_idx` (`user_id` ASC),
-  CONSTRAINT `fk_Log_user1`
+  INDEX `fk_log_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_log_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `carrental`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Donnée initiale
+-- -----------------------------------------------------
+INSERT INTO `carrental`.`privilege` (type) VALUES ('Admin');
+INSERT INTO `carrental`.`privilege` (type) VALUES ('Client');

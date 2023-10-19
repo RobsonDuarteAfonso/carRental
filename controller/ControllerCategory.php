@@ -4,6 +4,11 @@
 
     class ControllerCategory extends Controller {
 
+        public function __construct() {
+            
+            CheckSession::sessionAuth();
+        }        
+
         public function index() {
            
             $category = new Category;

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    define('PATH_DIR', 'http://localhost/carrentalMVC/');
+    define('PATH_DIR', 'http://localhost/carrental/');
 
     require_once(__DIR__.'/controller/Controller.php');
     require_once(__DIR__.'/library/RequirePage.php');

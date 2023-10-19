@@ -13,12 +13,18 @@
         <h1>Car Rent</h1>
         <nav>
             <a href="{{ path }}home">Accueil</a>
-            <a href="{{ path }}user">Client</a>
-            <a href="{{ path }}car">Voiture</a>
-            <a href="{{ path }}category">Catégorie</a>
-            <a href="{{ path }}rent">Location</a>
-            <a href="{{ path }}log">Journal de bord</a>
-            <a href="{{ path }}login">Login</a>
-            <a href="{{ path }}login/logout">Logout</a>
+            {% if guest %}
+                <a href="{{path}}user/create">Nouvel utilisateur</a>
+                <a href="{{ path }}login">Login</a>
+            {% else %}
+                <a href="{{ path }}rent">Location</a>
+                {% if session.privilege == 1 %}            
+                    <a href="{{ path }}user">Client</a>
+                    <a href="{{ path }}car">Voiture</a>
+                    <a href="{{ path }}category">Catégorie</a>
+                    <a href="{{ path }}log">Journal de bord</a>
+                {% endif %}
+                <a href="{{ path }}login/logout">Logout</a>
+            {% endif %}
         </nav>
     </header>

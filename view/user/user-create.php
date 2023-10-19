@@ -1,21 +1,24 @@
-{{ include('header.php', { title: 'Créer un Client' }) }}
+{{ include('header.php', { title: 'Créer un Utilisateur' }) }}
 <main>
 
     <section>
 
-        <h1>Créer un Client</h1>
+        <h1>Créer un Utilisateur</h1>
         
         <form action="{{ path }}user/store" method="post">
 
-            <label>
-                Privilege
-                <select name="privilege_id">
-                    <option value="0">Sélectionner</option> 
-                    {% for privilege in privileges %}
-                    <option value="{{privilege.id}}" {% if  privilege.id == data.privilege_id %} selected {% endif %}>{{ privilege.privilege}}</option>
-                    {% endfor%}
-                </select>
-            </label> 
+            {% if session.privilege == 1 %}
+                <label>
+                    Privilege
+                    <select name="privilege_id">
+                        <option value="0">Sélectionner</option> 
+                        {% for privilege in privileges %}
+                        <option value="{{privilege.id}}">{{ privilege.privilege}}</option>
+                        {% endfor%}
+                    </select>
+                </label>
+            {% endif %}
+
             <label>Nom
                 <input type="text" name="name">
             </label>
@@ -25,7 +28,7 @@
             <label>Courriel
                 <input type="email" name="email">
             </label>        
-            <label>Password
+            <label>Mot de passe
                 <input type="password" name="password">
             </label>
             <label>Permit
