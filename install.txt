@@ -8,3 +8,9 @@ WebDev
 --------------------
 
 https://e2395154.webdev.cmaisonneuve.qc.ca/carrental/index.php
+
+
+Utilisateur Administrateur
+-----------------------------------
+admin@carrental.com
+123456
