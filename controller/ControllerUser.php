@@ -7,17 +7,11 @@
 
         public function index() {
 
-            if ($_SESSION['privilege'] == 1) {
+            CheckSession::checkAccessAdmin();
+            $user = new User;
+            $select = $user->select(true);
 
-                $user = new User;
-                $select = $user->select(true);
-
-                Twig::render('user/user-index.php', ['users'=>$select]);
-
-            } else {
-
-                RequirePage::redirect('home');
-            }
+            Twig::render('user/user-index.php', ['users'=>$select]);
         }
 
 
@@ -35,7 +29,7 @@
                 'cost' => 10
             ];
 
-            $hashPassword= password_hash($password, PASSWORD_BCRYPT, $options);
+            $hashPassword= password_hash($_POST['password'], PASSWORD_BCRYPT, $options);
             $_POST['password'] = $hashPassword;
 
             if (!isset($_POST['privilege_id'])) {
@@ -50,20 +44,14 @@
 
         public function edit($id) {
 
-            if ($_SESSION['privilege'] == 1) {
+            CheckSession::checkAccessAdmin();
+            $user = new User;
+            $privilege = new Privilege;
 
-                $user = new User;
-                $privilege = new Privilege;
+            $selectId = $user->selectId($id);
+            $select = $privilege->select();
 
-                $selectId = $user->selectId($id);
-                $select = $privilege->select();
-
-                Twig::render('user/user-edit.php', ['user'=>$selectId, 'privileges'=>$select]);
-            
-            } else {
-
-                RequirePage::redirect('home');
-            }                
+            Twig::render('user/user-edit.php', ['user'=>$selectId, 'privileges'=>$select]);            
         }
 
 
@@ -97,25 +85,20 @@
         
         public function confirm() {
 
-            if ($_SESSION['privilege'] == 1) {
+            CheckSession::checkAccessAdmin();
+            $user = new User;
+            $selectId = $user->selectId($_POST['id']);
 
-                $user = new User;
-                $selectId = $user->selectId($_POST['id']);
+            $privilege = new Privilege;
+            $select = $privilege->selectId($selecteId['privilege_id']);
 
-                $privilege = new Privilege;
-                $select = $privilege->selectId($selecteId['privilege_id']);
-
-                Twig::render('user/user-confirm.php', ['user'=>$selectId, 'privilege'=>$select]);
-            
-            } else {
-
-                RequirePage::redirect('home');
-            }
+            Twig::render('user/user-confirm.php', ['user'=>$selectId, 'privilege'=>$select]);
         }
 
 
         public function delete() {
 
+            CheckSession::checkAccessAdmin();
             $user = new User;
             $delete = $user->delete($_POST['id']);           
 

@@ -8,7 +8,7 @@
         public $primaryKey = 'id';
 
         public $table2 = 'privilege';
-        public $primaryKey2 = 'id';
+        public $foreign = 'privilege_id';
 
         public $fillable = [
             'id',
@@ -32,14 +32,6 @@
             if ($count === 1) {
 
                 $user = $stmt->fetch();
-
-                var_dump($user);
-
-                $options = [
-                    'cost' => 10
-                ];
-    
-                $hashPassword = password_hash($password, PASSWORD_BCRYPT, $options);
                
                 if (password_verify($password, $user['password'])) {
 

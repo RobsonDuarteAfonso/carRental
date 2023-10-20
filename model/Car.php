@@ -8,7 +8,7 @@
         public $primaryKey = 'id';
 
         public $table2 = 'category';
-        public $primaryKey2 = 'id';
+        public $foreign = 'category_id';
 
         public $fillable = [
             'id',

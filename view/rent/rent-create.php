@@ -7,6 +7,7 @@
         
         <form action="{{ path }}rent/store" method="post">
 
+            {% if session.privilege == 1 %}
             <label>Client
                 <select name="user_id">
                     <option value="0">Sélectionner</option>
@@ -16,6 +17,9 @@
                     {% endfor %}
                 </select>
             </label>
+            {% else %}
+                <input type="hidden" name="user_id" value="{{ userId }}">
+            {% endif %}
             <label>Voiture
                 <select name="car_id">
                     <option value="0">Sélectionner</option>

@@ -1,4 +1,4 @@
-{{ include('header.php', { title: 'Liste d'Utilisateurs' }) }}
+{{ include('header.php', { title: "Liste d'Utilisateurs" }) }}
 <main>
 
     <section>

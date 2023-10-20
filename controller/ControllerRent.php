@@ -14,7 +14,16 @@
         public function index() {
            
             $rent = new Rent;
-            $rents = $rent->select(true, "user_id");
+            $rents = $rent->select(true, false, "user_id");
+
+            if ($_SESSION['privilege'] == 1) {
+
+                $rents = $rent->select(true, false, "user_id");
+
+            } else {
+
+                $rents = $rent->select(true, false, "user_id", $_SESSION['user_id']);
+            }
 
             Twig::render('rent/rent-index.php', ['rents'=>$rents]);
         }
@@ -28,7 +37,7 @@
             $user = new User;
             $users = $user->select();            
 
-            Twig::render('rent/rent-create.php', ['cars'=>$cars, 'users'=>$users]);
+            Twig::render('rent/rent-create.php', ['cars'=>$cars, 'users'=>$users, 'userId'=>$_SESSION['user_id']]);
         }
 
 
@@ -42,6 +51,7 @@
 
         public function edit($id, $id2) {
 
+            CheckSession::checkAccessAdmin();
             $rent = new Rent;
             $selectRent = $rent->selectId($id, $id2);
             
@@ -57,6 +67,7 @@
 
         public function update() {
 
+            CheckSession::checkAccessAdmin();
             $rent = new Rent;
             $update = $rent->update($_POST, true);
 
@@ -73,6 +84,7 @@
         
         public function confirm() {
 
+            CheckSession::checkAccessAdmin();
             $rent = new Rent;
             $selectRent = $rent->selectId($_POST['user_id'], $_POST['car_id']);
 
@@ -88,6 +100,7 @@
 
         public function delete() {
 
+            CheckSession::checkAccessAdmin();
             $rent = new Rent;
             $delete = $rent->delete($_POST['user_id'], $_POST['car_id']);
 

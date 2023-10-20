@@ -34,6 +34,8 @@
                         <td>{{ rent.start_date_rent ~ " " ~ rent.start_time_rent }}</td>
                         <td>{{ rent.end_date_rent ~ " " ~ rent.end_time_rent }}</td>
                         <td>{{ rent.price_per_day ~ " $" }}</td>
+
+                        {% if session.privilege == 1 %}
                         <td>
                             <a href="{{ path }}rent/edit/{{ rent.user_id }}/{{ rent.car_id }}" class="button_edit">
                                 <span class="material-icons">create</span>
@@ -46,6 +48,9 @@
                                 <button type="submit" class="button_remove"><span class="material-icons">delete</span></button>
                             </td>
                         </form> 
+                        {% else %}
+                        <td colspan="2"></td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 {% else %}

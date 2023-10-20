@@ -12,6 +12,7 @@
 
         public function index() {
            
+            CheckSession::checkAccessAdmin();
             $car = new Car;
             $select = $car->select(true);
 
@@ -21,6 +22,7 @@
 
         public function create() {
 
+            CheckSession::checkAccessAdmin();
             $category = new Category;
             $categories = $category->select();
 
@@ -30,6 +32,7 @@
 
         public function store() {            
             
+            CheckSession::checkAccessAdmin();
             $car = new Car;
             $insert = $car->insert($_POST);         
 
@@ -39,6 +42,7 @@
 
         public function edit($id) {
 
+            CheckSession::checkAccessAdmin();
             $car = new Car;
             $selectId = $car->selectId($id);
 
@@ -51,6 +55,7 @@
 
         public function update() {
 
+            CheckSession::checkAccessAdmin();
             $car = new Car;
             $update = $car->update($_POST);
 
@@ -67,6 +72,7 @@
         
         public function confirm() {
 
+            CheckSession::checkAccessAdmin();
             $car = new Car;
             $selectId = $car->selectId($_POST['id']);
 
@@ -79,6 +85,7 @@
 
         public function delete() {
 
+            CheckSession::checkAccessAdmin();
             $car = new Car;
             $delete = $car->delete($_POST['id']);
 

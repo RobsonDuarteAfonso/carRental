@@ -8,7 +8,7 @@ abstract class Crud extends PDO {
     }
 
 
-    public function select($innerjoin = false, $field = 'id', $order = null) {
+    public function select($innerjoin = false, $leftjoin = false, $field = 'id', $where = null, $order = null) {
 
         if (!$innerjoin) {
 
@@ -18,18 +18,40 @@ abstract class Crud extends PDO {
 
         } elseif (isset($this->table3))  {
 
+            if ($where != null) {
+
+                $sql = "SELECT * FROM $this->table a
+                INNER JOIN $this->table2 b ON b.$this->primaryKey2 = a.$this->primaryKey
+                INNER JOIN $this->table3 c ON c.$this->primaryKey3 = a.$this->secondPrimaryKey
+                WHERE b.id = $where
+                ORDER BY a.$field $order";
+
+            } else {
+                
             $sql = "SELECT * FROM $this->table a
                     INNER JOIN $this->table2 b ON b.$this->primaryKey2 = a.$this->primaryKey
                     INNER JOIN $this->table3 c ON c.$this->primaryKey3 = a.$this->secondPrimaryKey
                     ORDER BY a.$field $order";
+            }
+
+
 
             $stmt = $this->query($sql);
 
         } else {
 
-            $sql = "SELECT * FROM $this->table a
-                    INNER JOIN $this->table2 b ON b.$this->primaryKey2 = a.$this->primaryKey
-                    ORDER BY a.$field $order";
+            if ($leftjoin) {
+
+                $sql = "SELECT * FROM $this->table a
+                LEFT JOIN $this->table2 b ON b.$this->primaryKey = a.$this->foreign
+                ORDER BY a.$field $order";
+
+            } else {
+
+                $sql = "SELECT * FROM $this->table a
+                INNER JOIN $this->table2 b ON b.$this->primaryKey = a.$this->foreign
+                ORDER BY a.$field $order";
+            }
 
             $stmt = $this->query($sql);
         }
@@ -78,13 +100,13 @@ abstract class Crud extends PDO {
         $fieldsValue = ":".implode(", :", array_keys($data));
 
         $sql = "INSERT INTO $this->table ($fieldsName) VALUES ($fieldsValue)";
-
+         
         $stmt = $this->prepare($sql);
 
         foreach($data as $key=>$value) {
             $stmt->bindValue(":$key", $value);
         }
-        
+
         if($stmt->execute()) {
             return $this->lastInsertId();
         } else {

@@ -24,8 +24,8 @@ CREATE TABLE IF NOT EXISTS `carrental`.`user` (
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
   `address` VARCHAR(45) NULL,
-  `driver_license` VARCHAR(45) NOT NULL,
-  `expiration_date` DATE NOT NULL,
+  `driver_license` VARCHAR(45) NULL,
+  `expiration_date` DATE NULL,
   `privilege_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
@@ -118,7 +118,14 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Donnée initiale
+-- Donnée initiale - Privilege
 -- -----------------------------------------------------
 INSERT INTO `carrental`.`privilege` (type) VALUES ('Admin');
 INSERT INTO `carrental`.`privilege` (type) VALUES ('Client');
+
+
+-- -----------------------------------------------------
+-- Donnée initiale - Privilege
+-- -----------------------------------------------------
+INSERT INTO `carrental`.`user` (name, email, password, privilege_id) 
+VALUES ('Administrateur', 'admin@carrental', '$2y$10$eyYxszPxCf3T0PMajUY4pOQ6EYDgyIxju24a9KjOl36D/DlGxRJuO', 1);

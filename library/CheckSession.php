@@ -17,6 +17,14 @@ class CheckSession {
             }
         }
     }
+
+    static public function checkAccessAdmin() {
+
+        if ($_SESSION['privilege'] != 1) {
+            
+            RequirePage::redirect('home');
+        } 
+    }
 }
 
 ?>

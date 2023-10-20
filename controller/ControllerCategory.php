@@ -11,6 +11,7 @@
 
         public function index() {
            
+            CheckSession::checkAccessAdmin();
             $category = new Category;
             $select = $category->select();
 
@@ -20,12 +21,14 @@
 
         public function create() {
 
+            CheckSession::checkAccessAdmin();
             Twig::render('category/category-create.php');
         }
 
 
         public function store() {            
             
+            CheckSession::checkAccessAdmin();
             $category = new Category;
             $insert = $category->insert($_POST);         
 
@@ -35,6 +38,7 @@
 
         public function edit($id) {
 
+            CheckSession::checkAccessAdmin();
             $category = new Category;
             $selectId = $category->selectId($id);       
 
@@ -44,6 +48,7 @@
 
         public function update() {
 
+            CheckSession::checkAccessAdmin();
             $category = new Category;
             $update = $category->update($_POST);
 
@@ -60,6 +65,7 @@
         
         public function confirm() {
 
+            CheckSession::checkAccessAdmin();
             $category = new Category;
             $selectId = $category->selectId($_POST['id']);       
 
@@ -69,6 +75,7 @@
 
         public function delete() {
 
+            CheckSession::checkAccessAdmin();
             $category = new Category;
             $delete = $category->delete($_POST['id']);
 
