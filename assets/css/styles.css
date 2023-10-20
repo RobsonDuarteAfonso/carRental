@@ -16,5 +16,5 @@ main {
     display: flex;
     justify-content: center;
     text-align: center;
-    min-height: 85vh ;
+    min-height: 80vh;
 }

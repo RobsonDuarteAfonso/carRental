@@ -37,7 +37,7 @@
 
                     session_regenerate_id();
                     $_SESSION['user_id'] = $user['id'];
-                    $_SESSION['user_nom'] = $user['nom'];
+                    $_SESSION['user_nom'] = $user['name'];
                     $_SESSION['privilege'] = $user['privilege_id'];
                     $_SESSION['fingerPrint'] = md5($_SERVER['HTTP_USER_AGENT'] . $_SERVER['REMOTE_ADDR']);
                     return true;

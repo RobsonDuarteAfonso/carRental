@@ -9,6 +9,7 @@
     <script src="{{ path }}assets/js/main.js" defer></script>
 </head>
 <body>
+    
     <header>
         <h1>Car Rent</h1>
         <nav>
@@ -28,3 +29,12 @@
             {% endif %}
         </nav>
     </header>
+    
+        <div class="name_user">
+            {% if session|length > 0 %}
+                <span class="material-icons">person</span>
+                <span class="name_user-text">{{ session.user_nom }}</span>
+            {% endif %}
+        </div>
+    
+    

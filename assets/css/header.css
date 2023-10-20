@@ -26,3 +26,18 @@ header>nav>a:hover {
     background-color: darkgray;
     color: white;
 }
+
+.name_user {
+    min-height: 5vh;
+    background-color: darkgray;
+    color: #363636;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-right: 20px;
+    font-weight: 600;
+}
+
+.name_user-text {
+    margin-left: 10px;
+}
