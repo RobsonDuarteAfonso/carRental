@@ -11,7 +11,7 @@
             CheckSession::sessionAuth();
         }        
 
-        public function index() {
+        public function index($pdf = false) {
            
             $rent = new Rent;
             $rents = $rent->select(true, false, "user_id");
@@ -25,7 +25,14 @@
                 $rents = $rent->select(true, false, "user_id", $_SESSION['user_id']);
             }
 
-            Twig::render('rent/rent-index.php', ['rents'=>$rents]);
+            if ($pdf) {
+
+                return Twig::render('rent/rent-index.php', ['rents'=>$rents], true);
+
+            } else {
+
+                Twig::render('rent/rent-index.php', ['rents'=>$rents]);
+            }
         }
 
 
@@ -112,7 +119,14 @@
 
                 print_r($delete);
             }        
-        }    
+        }
+        
+        public function createPdf() {
+
+            $html = $this->index(true);
+
+            CreatePDF::create($html);
+        }
 
     }
 

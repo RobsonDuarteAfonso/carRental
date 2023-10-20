@@ -8,7 +8,7 @@
     require_once(__DIR__.'/library/Twig.php');
     require_once (__DIR__.'/library/CheckSession.php');
     require_once (__DIR__.'/library/RegisterAccess.php');
-
+    require_once (__DIR__.'/library/CreatePDF.php');
 
     $url = isset($_GET["url"]) ? explode ('/', ltrim($_GET["url"], '/')) : '/';
    

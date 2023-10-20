@@ -106,3 +106,16 @@ input[type="submit"], input[type="button"] {
 .button_cancel:hover {
     background-color: rgb(192, 192, 192);
 }
+
+/* Bouton PDF */
+
+.button_pdf {    
+    padding: var(--padding-button);
+    background-color: rgb(94, 0, 172);
+    color: white;
+}
+
+.button_pdf:hover {
+    background-color: rgb(118, 3, 212);
+}
+

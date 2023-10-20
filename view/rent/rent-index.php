@@ -15,11 +15,18 @@
                     <th>Debut</th>
                     <th>Fin</th>
                     <th>Prix par Jour</th>
-                    <th colspan="2">
+                    <th>
                         <a href="{{ path }}rent/create" class="button_add">
                             <span class="material-icons">add</span>
                         </a>
                     </th>
+                    {% if session.privilege == 2 %}
+                    <th>
+                        <a href="{{ path }}rent/createPdf" class="button_pdf">
+                            <span class="material-icons">picture_as_pdf</span>
+                        </a>
+                    </th>
+                    {% endif %}
                 </tr>
             </thead>
             <tbody>

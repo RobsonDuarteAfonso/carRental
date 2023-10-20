@@ -2,7 +2,7 @@
 
     class Twig {
 
-        static public function render($template, $data=array()) {
+        static public function render($template, $data=array(), $pdf = false) {
 
             $loader = new \Twig\Loader\FilesystemLoader('view');
 
@@ -21,9 +21,18 @@
             
             $twig->addGlobal('session', $_SESSION);
     
-            $twig->addGlobal('guest', $guest);            
+            $twig->addGlobal('guest', $guest);
 
-            echo $twig->render($template, $data);
+            if ($pdf) {
+
+                return $twig->render($template, $data);
+                
+            } else {
+
+                echo $twig->render($template, $data);
+            }
+
+            
         }
 
     }
